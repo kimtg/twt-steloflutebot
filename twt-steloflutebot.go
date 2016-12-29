@@ -51,9 +51,9 @@ func list_daum() []string {
 		return nil
 	}
 	return re_groups(
-			regexp.MustCompile("<span class=\"txt_issue\">\n.+tabindex.+\n(<.+>)?(.+?)(<.+>)?\n"),
-			s,
-			2)
+		regexp.MustCompile("<span class=\"txt_issue\">\n.+tabindex.+\n(<.+>)?(.+?)(<.+>)?\n"),
+		s,
+		2)
 }
 
 func print_and_twt(text string) {
