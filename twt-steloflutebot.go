@@ -35,12 +35,12 @@ func re_groups(re *regexp.Regexp, text string, group int) []string {
 }
 
 func list_naver() []string {
-	s, err := slurp("http://www.naver.com")
+	s, err := slurp("https://www.naver.com")
 	if err != nil {
 		return nil
 	}
 	return re_groups(
-		regexp.MustCompile("<option value=\".+\">.+: (.+)</option>"),
+		regexp.MustCompile("<span class=\"ah_k\">(.+?)</span>\n</a>\n</li>"),
 		s,
 		1)
 }
@@ -51,9 +51,9 @@ func list_daum() []string {
 		return nil
 	}
 	return re_groups(
-		regexp.MustCompile("<span class=\"txt_issue\">\n.+tabindex.+\n(<.+>)?(.+?)(<.+>)?\n"),
+		regexp.MustCompile("class=\"link_issue\" tabindex.*?>(.+?)</a>"),
 		s,
-		2)
+		1)
 }
 
 func print_and_twt(text string) {
